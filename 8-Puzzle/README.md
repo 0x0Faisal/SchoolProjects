@@ -1,2 +1,2 @@
-# 8-Puzzle solverr
+# 8-Puzzle solver
 
