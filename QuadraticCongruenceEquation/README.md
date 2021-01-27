@@ -1,0 +1,1 @@
+## Solving Quadratic Congruence Equation
