@@ -12,6 +12,7 @@ Dir* curr;
 
 int main() {
     curr = root = NULL;
+    system("clear -x");
     header();
     printf("Linux terminal like file system\nBY GROUP #12 \"-h\" for help \n");
     Dir* dir = create_dir("~");
@@ -44,21 +45,17 @@ int main() {
         }
         free(ll);
                 
-        char* command = (char*) calloc (CMD, sizeof(char));
-        char* name = (char*) calloc (NAME, sizeof(char));
-        if(!command || !name) { printf("Memory error \n"); return 1; }
-        /*scanf("%s%c", command);*/
-        /*fgets(command, 100, stdin);*/
         char* cmd = calloc(CMD, sizeof(char));
         fgets(cmd, 100, stdin);
         /* Skip if enter */
-        /*if(!strncmp("\n", command, 3)) continue;
-        */if(!strncmp("\n", cmd, 3)) continue;
+        if(!strncmp("\n", cmd, 3)) continue;
 
-        /*command[strcspn(command, "\n")] = 0;*/
         cmd[strcspn(cmd, "\n")] = 0;
         int clen = cmd_len(cmd);
         int alen = arg_len(cmd);
+        char* command = (char*) calloc (clen, sizeof(char));
+        char* name = (char*) calloc (alen, sizeof(char));
+        if(!command || !name) { printf("Memory error \n"); return 1; }
 
         command = get_cmd(cmd, clen);
         name    = get_args(cmd, alen);
@@ -141,7 +138,6 @@ int main() {
 
     /* clean up */
     free(dirs); free(files); free(root); 
-    /*system("make CLEAN");*/
     
     return 0;
 }
