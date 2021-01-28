@@ -48,5 +48,10 @@ void ls(void);
 void dir_tree(const char*);
 void cd(const char*);
 
+/* Extra */
+char* get_args(char*, int);
+char* get_cmd(char*, int);
+int cmd_len(char*);
+int arg_len(char*);
 
 #endif

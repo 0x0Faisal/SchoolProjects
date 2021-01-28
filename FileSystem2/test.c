@@ -6,6 +6,7 @@
 #define NAME 200
 #define CMD 50
 
+
 Dir* root;
 Dir* curr;
 
@@ -45,15 +46,26 @@ int main() {
                 
         char* command = (char*) calloc (CMD, sizeof(char));
         char* name = (char*) calloc (NAME, sizeof(char));
-        /*if(!command || !name) { printf("Memory error \n"); return 1; }*/
+        if(!command || !name) { printf("Memory error \n"); return 1; }
         /*scanf("%s%c", command);*/
-        fgets(command, 100, stdin);
-        command[strcspn(command, "\n")] = 0;
+        /*fgets(command, 100, stdin);*/
+        char* cmd = calloc(CMD, sizeof(char));
+        fgets(cmd, 100, stdin);
+        /* Skip if enter */
+        /*if(!strncmp("\n", command, 3)) continue;
+        */if(!strncmp("\n", cmd, 3)) continue;
 
+        /*command[strcspn(command, "\n")] = 0;*/
+        cmd[strcspn(cmd, "\n")] = 0;
+        int clen = cmd_len(cmd);
+        int alen = arg_len(cmd);
+
+        command = get_cmd(cmd, clen);
+        name    = get_args(cmd, alen);
 
         /* cd  */
         if(!strncmp("cd", command, 3)){
-            scanf("%s", name);
+            /*scanf("%s", name);*/
             cd(name);
         }
         /* dir_tree printing current tree */
@@ -63,7 +75,7 @@ int main() {
         }
         /* Create directory */
         else if(!strncmp("create_dir", command, 10) || !strncmp("mkdir", command, 6)){
-            scanf("%s", name);
+            /*scanf("%s", name);*/
             create_dir(name);
         }
         /* Create file */
@@ -76,7 +88,7 @@ int main() {
         }
         /* rm removes a file*/
         else if(!strncmp("remove", command, 7) || !strncmp("rm", command, 3)){
-            scanf("%s", name);
+            /*scanf("%s", name);*/
             rm(name);
         }
         /* reName to rename a file */
@@ -124,7 +136,7 @@ int main() {
             break;
         else
             printf("Command \"%s\" not found \n", command);
-        free(command);
+        free(cmd);
     }
 
     /* clean up */
@@ -133,3 +145,4 @@ int main() {
     
     return 0;
 }
+

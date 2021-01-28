@@ -1,6 +1,9 @@
 CC=gcc
 CFLAG=-ansi -Wall
 
+test2: test CLEAN
+
+
 test: test.o ll.o fs.o
 	$(CC) $(CFLAG) -o test test.o ll.o fs.o
 

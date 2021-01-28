@@ -255,9 +255,41 @@ void cd(const char* dir_name) {
     }
 }
 
+char* get_args(char* cmd, int len) {
+    char* arg = calloc(len, sizeof(char)); int k = 0;
+    int i = 0;
+    while(cmd[i]) i++;
+    int j;
+    for(j = 0; j < i; j++) {
+        if(cmd[j] == ' ') {
+            while(j < i && cmd[j] == ' ') j++;
+            if(j >= i) return 0;
+            while(k < len && j < i) arg[k++] = cmd[j++];
+            arg[k] = '\0';
+        }
+    }
+    return arg;
+}
 
+char* get_cmd(char* command, int len) {
+    char* cmd = calloc(len, sizeof(char)); int j = 0;
+    int i = 0;
+    while(command[i] && j < len && command[i] != ' ')
+        cmd[j++] = command[i++];
+    cmd[j] = '\0';
+    return cmd;
+}
 
+int cmd_len(char* cmd) {
+    int i = 0;
+    while(cmd[i] && cmd[i] != ' ') i++;
+    return i;
+}
 
-
-
-
+int arg_len(char* cmd) {
+    int i = cmd_len(cmd);
+    while(cmd[i] && cmd[i] == ' ') i++;
+    int j = 0;
+    while(cmd[i]) j++,i++;
+    return j;
+}
