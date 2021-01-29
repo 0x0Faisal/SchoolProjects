@@ -1,5 +1,5 @@
 # Draw Graph
-To draw weighted undirected graph𝐺=(𝑉,𝐸), that reads input using text file.
+To draw weighted undirected graph 𝐺=(𝑉,𝐸), that reads input using text file.
 The information of the graph are in the following format:
 ```
     5               // First line is for number of vertices  |V|
